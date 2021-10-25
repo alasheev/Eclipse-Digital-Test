@@ -27,7 +27,7 @@ class UserPage extends StatelessWidget {
               future:
                   Future.wait([getUserPosts(user.id), getUserAlbums(user.id)]),
               builder: (context, AsyncSnapshot<List<List>> snapshot) {
-                if (snapshot.connectionState == ConnectionState.done) {
+                if ((snapshot.connectionState == ConnectionState.done) && snapshot.data != null) {
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
