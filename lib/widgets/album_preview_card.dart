@@ -71,12 +71,12 @@ class _AlbumPreviewCardState extends State<AlbumPreviewCard>
           box.values.firstWhere((e) => photo.id == e.id).thumbnailBytes!);
     } catch (e) {
       final ByteData imageData =
-          await NetworkAssetBundle(Uri.parse(photo.url)).load("");
+          await NetworkAssetBundle(Uri.parse(photo.thumbnailUrl)).load("");
       final Uint8List bytes = imageData.buffer.asUint8List();
-      photo.fullBytes = bytes;
+      photo.thumbnailBytes = bytes;
       photo.save();
-      return Image.network(
-        photo.thumbnailUrl,
+      return Image.memory(
+        bytes,
       );
     }
   }

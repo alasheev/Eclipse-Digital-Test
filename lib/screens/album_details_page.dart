@@ -79,8 +79,8 @@ class AlbumDetailsPage extends StatelessWidget {
       final Uint8List bytes = imageData.buffer.asUint8List();
       photo.fullBytes = bytes;
       photo.save();
-      return Image.network(
-        photo.url,
+      return Image.memory(
+        bytes,
       );
     }
   }
